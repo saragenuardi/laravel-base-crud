@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Comic;
 use Illuminate\Http\Request;
 
+use function PHPSTORM_META\type;
+
 class ComicController extends Controller
 {
     /**
@@ -39,6 +41,17 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'title' => 'required|max:100|min:3',
+            'description' => 'required|max:500',
+            'thumb' => 'required',
+            'price' => 'required',
+            'series' => 'required|max:30',
+            'sale_date' => 'required',
+            'type' => 'required|max:50' 
+        ]);
+
         $data = $request->all();
 
         $new_comic = new Comic();
@@ -76,7 +89,8 @@ class ComicController extends Controller
      */
     public function edit($id)
     {
-        //
+        $comic_to_update = Comic::findOrFail($id);
+        return view('comic.edit', compact('comic_to_update'));
     }
 
     /**
