@@ -12,7 +12,7 @@
     </h5>
     <p>{{ $selected_comic->created_at}}</p>
     <p> {{ $selected_comic->updated_at}}</p>
-    <a class="btn btn-primary" href="{{ route('comic.edit', ['comic' => $comic->id ])}}"> Modifica</a>
+    <a class="btn btn-primary" href="{{ route('comic.edit', ['comic' => $selected_comic ])}}"> Modifica</a>
 </div>
     
 @endsection
